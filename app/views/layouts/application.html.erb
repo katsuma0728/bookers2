@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang = "ja">
   <head>
+    <mata charset = "UTF-8" />
     <title>Bookers2</title>
     <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
     <%= csrf_meta_tags %>
@@ -12,37 +13,51 @@
 
   <body>
     <header>
-      <nav class = "navbar navbar-expand-lg navbar-light">
+      <nav class = "navbar navbar-expand-lg navbar-dark bg-dark">
         <div class = "container">
-          <a class = "nav-brand p-3" href = "/"><span>Bookers</span></a>
-          <button class = "nav-toggler" type = "button" data-toggle = "collapse" data-target = "#navbarNavDropdown"
-                        aria-controls = "navbarNavDropdown" aria-expanded = "false" aria-label = "Toggle navigation">
-            <span class= "navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav ml-auto">
-            <li class = "nav-item">
-              <%= link_to "Home", root_path %>
+          <a class = "navbar-brand p-1" href = "/">Bookers</a>
+            <button class = "nav-toggler" type = "button" data-toggle = "collapse" data-target = "#navbarNavDropdown"
+                          aria-controls = "navbarNavDropdown" aria-expanded = "false" aria-label = "Toggle navigation">
+              <span class= "navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav ml-auto ">
+              <li class = "nav-item p-1 ">
+                <%= link_to root_path do %>
+                  <i class="fas fa-home"></i>Home
+                <% end %>
+              </li>
+            <% if user_signed_in? %>
+            <li class = "nav-item p-1">
+                <%= link_to users_path do %>
+                  <i class="fas fa-users"></i>User
+                <% end %>
             </li>
-          <% if user_signed_in? %>
-            <li class = "nav-item">
-              <%= link_to "Users", users_path %>
+            <li class = "nav-item p-1 ">
+              <%= link_to books_path do %>
+                <i class="fas fa-book-open"></i>Book
+              <% end %>
             </li>
-            <li class = "nav-item">
-              <%= link_to "Books", books_path %>
+            <li class = "nav-item p-1">
+              <%= link_to destroy_user_session_path, method: :delete do %>
+                <i class="fas fa-sign-out"></i>Log out
+              <% end %>
             </li>
-            <li class = "nav-item">
-              <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+            <% else %>
+            <li class = "nav-item p-1">
+              <%= link_to about_path do %>
+                <i class="fas fa-link"></i>About
+              <% end %>
             </li>
-          <% else %>
-            <li class = "nav-item">
-              <%= link_to "About", about_path %>
+            <li class = "nav-item p-1">
+              <%= link_to new_user_registration_path do %>
+                <i class="fas fa-user-plus"></i>Sign up
+              <% end %>
             </li>
-            <li class = "nav-item">
-              <%= link_to "Sign up", new_user_registration_path %>
-            </li>
-            <li class = "nav-item">
-              <%= link_to "Log in", new_user_session_path %>
+            <li class = "nav-item p-1">
+              <%= link_to new_user_session_path do %>
+                <i class="fas fa-sign-in"></i>Log in
+              <% end %>
             </li>
             <% end %>
             </ul>
@@ -50,7 +65,17 @@
         </div>
       </nav>
     </header>
-
-    <%= yield %>
+    <main>
+      <%= yield %>
+    </main>
+    <footer>
+      <div class = "container mt-5">
+        <div class = "row">
+          <div class = "mx-auto">
+            <p>CopyRight Imfratop.inc</p>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

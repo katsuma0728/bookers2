@@ -40,7 +40,7 @@
                     <tr>
                       <td>
                         <%= image_tag @book.user.get_profile_image(80,80) %><br>
-                          <%= link_to user_path do %>
+                          <%= link_to user_path(@book.user.id) do %>
                             <%= @book.user.name %>
                           <% end %>
                       </td>
@@ -54,7 +54,7 @@
                         <%= link_to "Edit", edit_book_path(@book.id), class: "btn btn-sm btn-success" %>
                       </td>
                       <td>
-                        <%= link_to "Destroy", book_path(@book), method: :delete, class: "btn btn-sm btn-danger", "data-confirm" => "本当に削除しますか？" %>
+                        <%= link_to "Destroy", book_path(@book.id), method: :delete, class: "btn btn-sm btn-danger", "data-confirm" => "本当に削除しますか？" %>
                       </td>
                       <% end %>
                     </tr>

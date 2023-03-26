@@ -20,7 +20,7 @@
               </tbody>
             </table>
             <div class = "row">
-              <%= link_to edit_user_path(current_user.id), class:  "btn btn-outline-secondary btn-block" do %>
+                <%= link_to edit_user_path(@user), class:  "btn btn-outline-secondary btn-block" do %>
                 <i class="fas fa-user-cog"></i>
               <% end %>
             </div>
@@ -30,7 +30,7 @@
                   <%= f.text_field :title %>
                 <div class = "body">Opinion</div>
                   <%= f.text_area :body %>
-                <div class = "action"><%= f.submit 'Create Books' %></div>
+                <div class = "action"><%= f.submit 'Create Books', class: "btn btn-success"%></div>
               <% end %>
           </div>
           <div class="col-md-8 offset-md-1">
@@ -48,7 +48,9 @@
                   <% @books.each do |books| %>
                     <tr>
                       <td>
-                        <%= image_tag @user.get_profile_image(80,80) %>
+                        <%= link_to user_path(books.user.id) do %>
+                          <%= image_tag @user.get_profile_image(80,80) %>
+                        <% end %>
                       </td>
                       <td><%= link_to book_path(books.id) do %>
                             <%= books.title %>

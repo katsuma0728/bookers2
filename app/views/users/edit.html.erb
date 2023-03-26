@@ -1,1 +1,33 @@
-<h1>プロフィール編集</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+  		<h1>User info</h1>
+  		<%= form_with model: @user, method: :patch do |f| %>
+    		<div class="form-group">
+    		  <div class = "form-name">
+    		    <label for="user-name">Name</label>
+    		  </div>
+    		   <div class = "name-form">
+    		    <%= f.text_field :name %>
+    		  </div>
+    		</div>
+    		<div class = "form-group">
+    		  <div class = "form-image-title">
+    		    <label for = "input-image">Image</label>
+    		  </div>
+    		  <div class = "form-image">
+    		    <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
+    		  </div>
+    		</div>
+    		<div class="form-group">
+          <div class = "form-introduction">
+    		    <label for ="introductionuction_body">Introduction</label>
+    		  </div>
+    		  <div class = "introduction-form">
+    		    <%= f.text_area :introduction %>
+    		  </div>
+    		</div>
+    		<div class = "Update-form">
+    		  <%= f.submit "Update User", class: "btn btn-secondary" %>
+    		</div>
+  		<% end %>
